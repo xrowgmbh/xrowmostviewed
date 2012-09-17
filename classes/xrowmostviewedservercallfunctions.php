@@ -26,6 +26,7 @@ class xrowMostViewedServerCallFunctions
                     $counter = eZViewCounter::create( $nodeid );
                 }
                 $counter->increase();
+                $counter->store();
                 return array(1, $nodeid );
             }
             else

@@ -1,0 +1,7 @@
+xrow Most Viewed Extension
+
+Contains:
+- block-design element
+- extended Attribute Filter
+- INI-Files for configuration
+- class for Ajax-Call

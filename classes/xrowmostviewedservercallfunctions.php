@@ -13,20 +13,26 @@ class xrowMostViewedServerCallFunctions
      */
     public static function increaseViewCounter( $args )
     {
-        //eZLog::write( 'NodeID: ', 'xrowmostviewed.log' );
         $http=eZHTTPTool::instance();
         if( $http->hasPostVariable( 'nodeid' ) )
         {
-            $nodeid=trim((int)$http->postVariable( 'nodeid' ));
-            if( $nodeid != 0 and $nodeid > 10 )
+            $nodeid=(int)trim($http->postVariable( 'nodeid' ));
+            
+            if( $nodeid >= 1 )
             {
-                $counter = eZViewCounter::fetch( $nodeid );
-                if ( !is_object( $counter ) )
+                xrowViewCounter::updateView( $nodeid );
+                
+                $impressions=$http->postVariable( 'impressions' );
+                if ( is_array( $impressions ) )
                 {
-                    $counter = eZViewCounter::create( $nodeid );
+                    foreach( $impressions as $impression ){
+                        $impression = (int)$impression;
+                        if ( $impression >= 1 ){
+                            xrowViewCounter::updateImpression( $impression );
+                        }
+                    }
                 }
-                $counter->increase();
-                $counter->store();
+
                 return array(1, $nodeid );
             }
             else
@@ -40,4 +46,3 @@ class xrowMostViewedServerCallFunctions
         }
     }
 }
-?>

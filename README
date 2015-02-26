@@ -5,3 +5,8 @@ Contains:
 - extended Attribute Filter
 - INI-Files for configuration
 - class for Ajax-Call
+
+How to use
+ - enabled the extension
+ - Implement <body data-view="[NodeID]" >  to track a view
+ - Implement <anytag data-impression="[NodeID]" > to track an impression

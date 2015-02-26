@@ -23,10 +23,9 @@ class xrowMostViewedExtendedFilter
                 $sql = ' ezcontentobject_tree.node_id NOT IN ( ' . implode( ', ', $params['exclude'] ) . ' ) AND ';
             }
         }
-        $result = array( 'tables' => ', ezview_counter',
-                         'joins'  => $sql . ' ezcontentobject_tree.node_id = ezview_counter.node_id AND ',
-                         'columns' => ', ezview_counter.count view_count ');
+        $result = array( 'tables' => ', ex_xrow_counter',
+                         'joins'  => $sql . ' ezcontentobject_tree.node_id = ex_xrow_counter.node_id AND ',
+                         'columns' => ', ex_xrow_counter.views view_count ');
     return $result;
     }
 }
-?>

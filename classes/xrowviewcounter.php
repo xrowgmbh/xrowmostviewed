@@ -131,7 +131,27 @@ class xrowViewCounter extends eZPersistentObject
         }
         return $countListArray;
     }
-
+    public static function stats( $object_id )
+    {
+        $object = eZContentObject::fetch( $object_id );
+        $nodes = $object->visibleNodes();
+        $result = array();
+        $result["views"] = 0;
+        $result["impressions"] = 0;
+        foreach( $nodes as $node )
+        {
+            $stat = xrowViewCounter::fetch( $node->attribute( "node_id" ) );
+            if( isset( $stat->views ) )
+            {
+                $result["views"] += $stat->views;
+            }
+            if( isset( $stat->impressions ) )
+            {
+                $result["impressions"] += $stat->impressions;
+            }
+        }
+        return $result;
+    }
     public $node_id;
     public $impressions;
     public $views;

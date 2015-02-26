@@ -5,8 +5,12 @@ Contains:
 - extended Attribute Filter
 - INI-Files for configuration
 - class for Ajax-Call
+- Backend template
 
-How to use
+How to use this tracking extension?
+
  - enable the extension
- - Implement <body data-view="[NodeID]" >  to track a view
+ - Implement <body data-nodeID="[NodeID]" >  to track a view
  - Implement <anytag data-impression="[NodeID]" > to track an impression
+ - Implement the ezstats.tpl tap in the backend
+ - and collect data

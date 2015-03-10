@@ -18,25 +18,21 @@ class xrowMostViewedOperator
     function namedParameterList()
     {
         return array(
-            'metadata' => array(
-                'node_id' => array(
-                    'type' => 'int' ,
-                    'required' => true ,
-                    'default' => null
-                )
-            )
+            'metadata' => array()
         );
     }
 
     function modify( $tpl, $operatorName, $operatorParameters, &$rootNamespace, &$currentNamespace, &$operatorValue, &$namedParameters )
     {
+
         switch ( $operatorName )
         {
             case 'view_count':
             {
-                if( isset( $namedParameters['node_id'] ) )
+                if( isset( $operatorValue ) )
                 {
-                    $counter = xrowViewCounter::fetch( (int)$namedParameters['node_id'] );
+                    $counter = xrowViewCounter::fetch( (int)$operatorValue );
+
                     if ( $counter ){
                         $operatorValue = $counter->views;
                     }

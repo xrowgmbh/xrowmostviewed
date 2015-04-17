@@ -9,7 +9,7 @@ function updateMostViewed(){
     {
         nodeid=$("body").attr("data-nodeID");
     }
-    $("*[data-impression]").each(function( index, value ){
+    $("*[data-impression]:visible").each(function( index, value ){
         impressions[index] = $(this).attr('data-impression');
     });
 

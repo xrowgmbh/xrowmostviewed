@@ -29,10 +29,13 @@ class xrowMostViewedServerCallFunctions
                 }
             }
         }
-        if( $http->hasPostVariable( 'nodeid' ) and $nodeid >= 1 )
+        if( $http->hasPostVariable( 'nodeid' ) )
         {
             $nodeid=(int)trim($http->postVariable( 'nodeid' ));
-            xrowViewCounter::updateView( $nodeid );
+            if($nodeid >= 1)
+            {
+                xrowViewCounter::updateView( $nodeid );
+            }
         }
     }
 }

@@ -7,9 +7,10 @@ class xrowMostViewedExtendedFilter
      * @param unknown_type $params
      * @return unknown
      */
-	public function xrowMostViewedFilter( $params )
+
+    public function xrowMostViewedFilter( $params )
     {
-        $sql = '';
+        $sql = ' ';
         if ( isset( $params['exclude'] ) and count( $params['exclude'] ) > 0 )
         {
             $params['exclude'] = array_unique( $params['exclude'] );
@@ -23,9 +24,9 @@ class xrowMostViewedExtendedFilter
                 $sql = ' ezcontentobject_tree.node_id NOT IN ( ' . implode( ', ', $params['exclude'] ) . ' ) AND ';
             }
         }
-        $result = array( 'tables' => ', ex_xrow_counter',
-                         'joins'  => $sql . ' ezcontentobject_tree.node_id = ex_xrow_counter.node_id AND ',
-                         'columns' => ', ex_xrow_counter.views view_count ');
-    return $result;
+        $result = array( 'tables' => 'INNER JOIN ex_xrow_counter ON (ezcontentobject_tree.node_id = ex_xrow_counter.node_id)',
+                         'joins'  => $sql,
+                         'columns' => ', ex_xrow_counter.views AS view_count ');
+        return $result;
     }
 }
